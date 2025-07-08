@@ -1,0 +1,60 @@
+global_commands:
+- show running-config
+- show ip route
+- show ip interface bri
+devices:
+- ip: 192.168.10.11
+  username: admin
+  password: Admin@123
+  health_checks:
+    cpu_threshold: 80
+    memory_threshold: 80
+    interfaces:
+    - name: eth0
+      errors_threshold: 10
+    - name: eth1
+      errors_threshold: 10
+    routing:
+      must_have_default_route: true
+- ip: 192.168.20.21
+  username: admin
+  password: Admin@123
+  health_checks:
+    cpu_threshold: 80
+    memory_threshold: 80
+    interfaces:
+    - name: eth0
+      errors_threshold: 10
+    routing:
+      must_have_default_route: true
+# - ip: 192.168.50.21
+#   username: admin
+#   password: Admin@123
+#   health_checks:
+#     cpu_threshold: 80
+#     memory_threshold: 80
+#     interfaces: []
+#     routing:
+#       must_have_default_route: false
+- ip: 192.168.30.21
+  username: admin
+  password: Admin@123
+  health_checks:
+    cpu_threshold: 80
+    memory_threshold: 80
+    interfaces:
+    - name: eth0
+      errors_threshold: 10
+    routing:
+      must_have_default_route: true
+- ip: 192.168.30.11
+  username: admin
+  password: Admin@123
+  health_checks:
+    cpu_threshold: 80
+    memory_threshold: 80
+    interfaces:
+    - name: eth0
+      errors_threshold: 10
+    routing:
+      must_have_default_route: true

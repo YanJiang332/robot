@@ -1,0 +1,49 @@
+--- Command: show running-config ---
+Building configuration...
+
+Current configuration:
+!
+frr version 8.4_git
+frr defaults traditional
+hostname 5cf8be18bae0
+domainname localdomain
+no ipv6 forwarding
+!
+interface eth0
+ ip address 192.168.20.21/24
+exit
+!
+interface eth1
+ ip address 192.168.30.11/24
+exit
+!
+interface lo
+ ip address 2.2.2.2/32
+exit
+!
+router ospf
+ network 2.2.2.2/32 area 0
+ network 192.168.20.0/24 area 0
+ network 192.168.30.0/24 area 0
+exit
+!
+end
+
+--- Command: show ip route ---
+Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+K>* 0.0.0.0/0 [0/0] via 192.168.20.1, eth0, 1d09h08m
+O>* 1.1.1.1/32 [110/10] via 192.168.20.11, eth0, weight 1, 03:13:53
+O   2.2.2.2/32 [110/0] is directly connected, lo, weight 1, 03:12:50
+C>* 2.2.2.2/32 is directly connected, lo, 1d09h08m
+O>* 3.3.3.3/32 [110/10] via 192.168.30.21, eth1, weight 1, 03:11:57
+O>* 192.168.10.0/24 [110/20] via 192.168.20.11, eth0, weight 1, 1d09h08m
+O   192.168.20.0/24 [110/10] is directly connected, eth0, weight 1, 1d09h08m
+C>* 192.168.20.0/24 is directly connected, eth0, 1d09h08m
+O   192.168.30.0/24 [110/10] is directly connected, eth1, weight 1, 1d09h08m
+C>* 192.168.30.0/24 is directly connected, eth1, 1d09h08m
